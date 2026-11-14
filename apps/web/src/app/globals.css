@@ -4,9 +4,101 @@
 
 :root {
   color-scheme: dark;
+  --sd-bg: #070709;
+  --sd-surface: rgba(16, 16, 20, 0.86);
+  --sd-hairline: rgba(255, 255, 255, 0.085);
+  --sd-hairline-strong: rgba(255, 255, 255, 0.16);
+  --sd-accent-orange: #f97316;
+  --sd-accent-emerald: #10b981;
 }
 
 body {
-  background-color: #09090b;
+  background-color: var(--sd-bg);
   color: #f4f4f5;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(249, 115, 22, 0.09), transparent 70%),
+    radial-gradient(ellipse 60% 45% at 85% 10%, rgba(16, 185, 129, 0.06), transparent 65%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Brushed dark metal & hairline card surface */
+.sd-surface {
+  background: linear-gradient(180deg, rgba(22, 22, 27, 0.9) 0%, rgba(12, 12, 15, 0.92) 100%);
+  border: 1px solid var(--sd-hairline);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.065),
+    0 18px 40px -24px rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.sd-subsurface {
+  background: rgba(8, 8, 11, 0.78);
+  border: 1px solid var(--sd-hairline);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.035);
+}
+
+/* Natural tactile interactions (hover, press, focus-visible) */
+.sd-btn {
+  transition:
+    background-color 150ms ease-out,
+    border-color 150ms ease-out,
+    color 150ms ease-out,
+    box-shadow 150ms ease-out,
+    scale 140ms ease-out;
+  transition-timing-function: ease-out, ease-out, ease-out, ease-out, linear(0, 0.45 15%, 1.08 35%, 0.97 55%, 1);
+}
+
+.sd-btn:not(:disabled):hover {
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.55);
+}
+
+.sd-btn:not(:disabled):active {
+  scale: 0.97;
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid #f97316;
+  outline-offset: 2px;
+}
+
+/* Subtle kinetic pulse only when user allows motion */
+@keyframes sd-ring-pulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.18);
+  }
+}
+
+.sd-pulse-dot {
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sd-pulse-dot {
+    animation: sd-ring-pulse 1.8s ease-in-out infinite;
+  }
+}
+
+/* Subtle dark scrollbar */
+.sd-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.sd-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sd-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+.sd-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
 }
