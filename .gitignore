@@ -1,0 +1,21 @@
+# Rust
+/target
+**/*.rs.bk
+Cargo.lock
+
+# Node / Next.js
+node_modules/
+apps/web/.next/
+apps/web/out/
+apps/web/dist/
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# Test artifacts / generated wavs
+*.wav
+!test-vectors/*.wav
+.env
+.env.local
+.DS_Store
+Thumbs.db

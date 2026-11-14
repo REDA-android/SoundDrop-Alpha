@@ -1,0 +1,11 @@
+[package]
+name = "sounddrop_cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+sounddrop_core = { path = "../sounddrop_core" }
+clap.workspace = true
+serde.workspace = true
+serde_json.workspace = true
